@@ -58,24 +58,26 @@ export const TransactionHistory: React.FC = () => {
 
     // Apply sorting
     result.sort((a, b) => {
-      let aValue: any = a[sortOptions.field];
-      let bValue: any = b[sortOptions.field];
+      let aValue: string | number | Date = a[sortOptions.field];
+      let bValue: string | number | Date = b[sortOptions.field];
 
       if (sortOptions.field === 'date') {
-        aValue = new Date(aValue).getTime();
-        bValue = new Date(bValue).getTime();
+        const aDate = aValue as Date;
+        const bDate = bValue as Date;
+        aValue = new Date(aDate).getTime();
+        bValue = new Date(bDate).getTime();
       } else if (sortOptions.field === 'amount') {
-        aValue = Math.abs(aValue);
-        bValue = Math.abs(bValue);
+        aValue = Math.abs(aValue as number);
+        bValue = Math.abs(bValue as number);
       } else {
         aValue = String(aValue).toLowerCase();
         bValue = String(bValue).toLowerCase();
       }
 
       if (sortOptions.direction === 'asc') {
-        return aValue > bValue ? 1 : -1;
+        return (aValue as number) > (bValue as number) ? 1 : -1;
       } else {
-        return aValue < bValue ? 1 : -1;
+        return (aValue as number) < (bValue as number) ? 1 : -1;
       }
     });
 
@@ -179,7 +181,7 @@ export const TransactionHistory: React.FC = () => {
             <Dropdown
               options={typeOptions}
               value={filters.type || 'all'}
-              onChange={(value) => setFilters(prev => ({ ...prev, type: value as any }))}
+              onChange={(value) => setFilters(prev => ({ ...prev, type: value as FilterOptions['type'] }))}
             />
           </div>
 

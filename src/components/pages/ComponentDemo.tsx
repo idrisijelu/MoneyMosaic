@@ -113,7 +113,7 @@ export const ComponentDemo: React.FC = () => {
                   <button
                     key={size}
                     onClick={() => {
-                      setModalSize(size as any);
+                      setModalSize(size as 'small' | 'medium' | 'large');
                       setIsModalOpen(true);
                     }}
                     className="px-4 py-2 text-sm rounded-md border transition-colors"
