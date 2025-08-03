@@ -34,7 +34,8 @@ const CardContent = styled.p`
   margin: 0 0 ${({ theme }) => theme.spacing[6]} 0;
 `;
 
-const PrimaryButton = styled.button`
+// Ensure the button does not accidentally submit forms by default
+const PrimaryButton = styled.button.attrs({ type: 'button' })`
   background-color: ${({ theme }) => theme.colors.primary[500]};
   color: ${({ theme }) => theme.colors.white};
   border: none;
@@ -62,7 +63,8 @@ const PrimaryButton = styled.button`
   }
 `;
 
-const SecondaryButton = styled.button`
+// Ensure the button does not accidentally submit forms by default
+const SecondaryButton = styled.button.attrs({ type: 'button' })`
   background-color: transparent;
   color: ${({ theme }) => theme.colors.secondary[700]};
   border: 1px solid ${({ theme }) => theme.colors.secondary[300]};
